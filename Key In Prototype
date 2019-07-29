@@ -3,7 +3,7 @@
 <br>
 <br>
 <hr>
-<a id="KeyLink" style="display:inline-block;" href="https://iwjira.activision.com/issues/?jql=key%20in(IWH-156406%2C%20IWH-156478%2C%20IWH-156555%2C%20IWH-156550%2C%20IWH-156654%2C%20IWH-156647%2C%20IWH-156700%2C%20IWH-156744%2C%20IWH-156759%2C%20IWH-156763%2C%20IWH-156765)" target="_blank">
+<a id="KeyLink" style="display:inline-block;" href="https://google.com" target="_blank">
 KEY IN- IWH-156406, IWH-156478, IWH-156555, IWH-156550, IWH-156654, IWH-156647, IWH-156700, IWH-156744, IWH-156759, IWH-156763, IWH-156765</a>
 <hr>
 <input type="text" id="NewKey" name="keyInput" placeholder="Enter issue ex. IWH-12345">
