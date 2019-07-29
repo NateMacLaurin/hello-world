@@ -1,0 +1,74 @@
+<font size="4"><b>KEY IN TEST AREA</b></font>
+<br>PLACEHOLDER TEXT
+<br>
+<br>
+<hr>
+<a id="KeyLink" style="display:inline-block;" href="https://google.com" target="_blank">
+KEY IN- IWH-156406, IWH-156478, IWH-156555, IWH-156550, IWH-156654, IWH-156647, IWH-156700, IWH-156744, IWH-156759, IWH-156763, IWH-156765</a>
+<hr>
+<input type="text" id="NewKey" name="keyInput" placeholder="Enter issue ex. IWH-12345">
+<button onclick="updateKey()">Add Issue</button>
+<button id="UndoButton" onclick="undoLast()" disabled>Undo Last</button>
+<button onclick="clearData()">Clear Data</button>
+<div id="Status">
+Ready
+</div>
+
+<script>
+var lnk;				//global vars start
+var text;
+var undolnk;
+var undotext;
+var lastIssue;				//global vars end
+
+mainLoop(); 				//invoke main once
+setInterval(mainLoop(), 30000); 	//invoke main every 30 seconds
+
+function mainLoop() {
+	if(typeof localStorage.getItem('storedLink') === "undefined") {
+		lnk = document.getElementById('KeyLink');
+	}
+	else {
+		lnk = localStorage.getItem('storedLink');
+	}
+	text = document.getElementById('KeyLink');
+	undolnk = lnk.href;
+	undotext = text.innerHTML;
+}
+
+function updateKey() {
+	var userInput = document.getElementById('NewKey').value;
+    
+	if(lastIssue == userInput) {
+    	document.getElementById('Status').innerHTML = 'This issue was already added!';
+    }
+    else {
+        document.getElementById("UndoButton").disabled = false;
+    	lastIssue = userInput;
+	lnk.href = lnk.href.substring(0, lnk.href.length - 1);
+	lnk.href += '%2C%20' + userInput + ')';
+	text.innerHTML += ' ' + userInput;
+    	document.getElementById('Status').innerHTML = userInput + ' Added';
+    }
+	localStorage.setItem('storedLink', JSON.stringify(lnk.href));
+}
+
+function undoLast() {
+	if(text.innerHTML == undotext) {
+    	document.getElementById('Status').innerHTML = 'Unable to undo: no issue to remove!';
+        document.getElementById("UndoButton").disabled = true;
+    }
+    else {
+    	lnk.href = undolnk;
+    	text.innerHTML = undotext;
+    	document.getElementById('Status').innerHTML = 'Last issue removed';
+    }
+    	lastIssue = "";
+	localStorage.setItem('storedLink', JSON.stringify(lnk.href));
+}
+
+function clearData() {
+	localStorage.removeItem('storedLink');
+	document.getElementById('Status').innerHTML = 'Storage Cleared!';
+}
+</script>
